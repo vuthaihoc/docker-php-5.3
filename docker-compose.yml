@@ -1,0 +1,27 @@
+version: '2'
+services:
+  #######################################
+  # PHP application Docker container
+  #######################################
+  app:
+    image: actency/docker-apache-php:5.3
+    links:
+      - memcached
+    ports:
+      - "8080:80"
+      - "9000:9000"
+    environment:
+      - SERVERNAME=localhost
+      - SERVERALIAS=localhost.dev
+      - DRUSH_VERSION = 8 / 9
+      - DOCUMENTROOT=htdocs
+    volumes:
+      - ./src/:/var/www/html/htdocs/
+
+  #######################################
+  # Memcached
+  #######################################
+  memcached:
+    image: memcached:alpine
+    ports:
+     - "11211:11211"
