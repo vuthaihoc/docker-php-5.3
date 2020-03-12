@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   #######################################
   # PHP application Docker container
@@ -17,6 +17,8 @@ services:
       - DOCUMENTROOT=htdocs
     volumes:
       - ./src/:/var/www/html/htdocs/
+      - ./statics/:/var/www/html/statics/
+      - ./vhosts/123doc.local:/etc/apache2/sites-enabled/123doc.local
 
   #######################################
   # Memcached

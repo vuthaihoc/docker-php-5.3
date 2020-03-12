@@ -1,0 +1,31 @@
+<VirtualHost *:80>
+  ServerName 123doc.local
+  ServerAlias www.123doc.local
+  DocumentRoot "/var/www/html/htdocs"
+  <Directory "/var/www/html/htdocs">
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+  </Directory>
+  #ErrorLog /var/log/apache2/error.log
+  #LogLevel error
+  SetEnvIf Remote_Addr "127\.0\.0\.1" loopback
+  #CustomLog /var/log/apache2/access.log combined env=!loopback
+  ServerSignature On
+</VirtualHost>
+<VirtualHost *:80>
+  ServerName static.123doc.local
+  DocumentRoot "/var/www/html/statics"
+  <Directory "/var/www/html/statics">
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+  </Directory>
+  #ErrorLog /var/log/apache2/error.log
+  #LogLevel error
+  SetEnvIf Remote_Addr "127\.0\.0\.1" loopback
+  #CustomLog /var/log/apache2/access.log combined env=!loopback
+  ServerSignature On
+</VirtualHost>
